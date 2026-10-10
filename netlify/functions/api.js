@@ -5,6 +5,7 @@
 'use strict';
 
 const BASE = '/.netlify/functions/api';
+const googleImport = require('./google-import');
 const FIELDS = 'id,reference,title,location,due_date,status,priority,instructions,created_at,updated_at';
 const CHECKS = [
   'Sprawdź zakres i dokumentację', 'Zabezpiecz stanowisko',
@@ -154,7 +155,13 @@ async function route(event,cfg,a,path){
     return reply(200,{ok:true},expireCookies());
   }
   if(path==='/jobs'&&method==='GET'){
-    const jobs=await loadJobs(cfg,a);return reply(200,{items:jobs,total:jobs.length},a.fresh);
+    const jobs=await loadJobs(cfg,a);
+    if(a.role==='coordinator'){
+      const sources=await table(cfg,a,'akp_job_sources',{select:'job_id,source_record,synced_at',limit:'500'});
+      const byJob=new Map(sources.map(x=>[x.job_id,x]));
+      for(const j of jobs){const src=byJob.get(j.id);if(src)j.source={record:src.source_record,synced_at:src.synced_at};}
+    }
+    return reply(200,{items:jobs,total:jobs.length},a.fresh);
   }
   if(path==='/jobs'&&method==='POST'){
     if(a.role!=='coordinator')return deny();
@@ -245,7 +252,16 @@ async function route(event,cfg,a,path){
     return reply(200,{items},a.fresh);
   }
   if(path==='/sources'&&method==='GET'){
-    if(a.role!=='coordinator')return deny();return reply(200,{status:'NOT_CONNECTED',message:'Google Drive/Gmail/Calendar nie są jeszcze podłączone do tej instalacji. Nie ma danych LIVE.'},a.fresh);
+    if(a.role!=='coordinator')return deny();
+    const sources=await table(cfg,a,'akp_job_sources',{select:'synced_at',order:'synced_at.desc',limit:'500'});
+    return reply(200,{status:sources.length?'IMPORTED':'EMPTY',count:sources.length,last_sync:sources[0]?.synced_at||null,sheet_id:googleImport.SHEET_ID,client_id:process.env.GOOGLE_CLIENT_ID||'',mode:'ON_DEMAND_READ_ONLY'},a.fresh);
+  }
+  if(path==='/google/sync'&&method==='POST'){
+    if(a.role!=='coordinator')return deny();
+    let rows;try{rows=await googleImport.readSheet(bodyJson(event).accessToken);}catch(e){return reply(422,{message:e.message},a.fresh);}
+    const result=await sbFetch(cfg,'/rest/v1/rpc/akp_import_google',{method:'POST',token:a.token,data:{rows}});
+    await recordAudit(cfg,a,'GOOGLE_SYNC',googleImport.SHEET_ID,result);
+    return reply(200,result,a.fresh);
   }
   return notFound();
 }
