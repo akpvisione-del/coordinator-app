@@ -1,0 +1,8 @@
+{
+  "name":"akp-commander-v10",
+  "private":true,
+  "version":"10.0.0-rc.1",
+  "description":"AKP Commander — distinct coordinator and worker panels",
+  "scripts": {"test":"node --test tests/api.test.js", "check":"node --check public/app.js && node --check netlify/functions/api.js"},
+  "engines":{"node":">=20"}
+}

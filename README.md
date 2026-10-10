@@ -1,2 +1,0 @@
-# coordinator-app
-coordinator-app
