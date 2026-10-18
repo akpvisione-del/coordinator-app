@@ -1,0 +1,39 @@
+{
+  "id": "/login",
+  "name": "AKP Commander",
+  "short_name": "AKP",
+  "description": "Zlecenia, ekipy i terminy AKP VISIONE.",
+  "lang": "pl",
+  "start_url": "/login",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#101114",
+  "theme_color": "#101114",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/akp-app-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/akp-app-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/akp-app-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/akp-app-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

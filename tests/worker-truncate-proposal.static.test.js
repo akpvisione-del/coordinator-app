@@ -1,0 +1,24 @@
+'use strict';
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const dir=path.join(__dirname,'../docs/sql_proposals');
+const forward=fs.readFileSync(path.join(dir,'authenticated_truncate_revoke_20261017_v01.NOT_APPLIED.sql'),'utf8');
+const rollback=fs.readFileSync(path.join(dir,'authenticated_truncate_revoke_20261017_v01_ROLLBACK.NOT_APPLIED.sql'),'utf8');
+const tables=['akp_assignments','akp_audit','akp_checks','akp_job_financials','akp_job_sources','akp_jobs','akp_profiles','akp_reports'];
+test('draft TRUNCATE security hardening only changes 8 documented AKP tables',()=>{
+ assert.match(forward,/REVIEW ONLY — NOT APPLIED/);
+ assert.match(forward,/REVOKE TRUNCATE ON TABLE/);
+ assert.match(forward,/FROM authenticated;/);
+ assert.match(forward,/BEGIN;/);
+ assert.match(forward,/COMMIT;/);
+ for(const name of tables)assert.ok(forward.includes('public.'+name));
+ const refs=[...forward.matchAll(/public\.(akp_[a-z_]+)/g)].map(x=>x[1]).sort();
+ assert.deepEqual(refs,tables.slice().sort());
+ const executable=forward.split('\n').filter(l=>!l.trim().startsWith('--')).join('\n');
+ assert.doesNotMatch(executable,/\b(DROP|DELETE|INSERT|UPDATE|ALTER POLICY)\b/);
+ assert.match(rollback,/GRANT TRUNCATE ON TABLE/);
+ assert.match(rollback,/TO authenticated;/);
+ for(const name of tables)assert.ok(rollback.includes('public.'+name));
+});

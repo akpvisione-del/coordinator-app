@@ -1,0 +1,76 @@
+name: AKP — isolated RLS PostgreSQL regression (DRAFT only)
+
+on:
+  push:
+    branches:
+      - feat/akp-supersprint-01-v01
+      - fix/worker-assign-and-manage-20261017-v01
+    paths:
+      - .github/workflows/rls-isolated.yml
+      - tests/rls_isolated/**
+      - docs/sql_proposals/**
+  pull_request:
+    branches:
+      - fix/worker-assign-and-manage-20261017-v01
+      - feat/akp-premium-cinematic-20261014-v01
+    paths:
+      - .github/workflows/rls-isolated.yml
+      - tests/rls_isolated/**
+      - docs/sql_proposals/**
+
+permissions:
+  contents: read
+
+concurrency:
+  group: akp-rls-isolated-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rls-isolated:
+    name: Test worker revocation in disposable PostgreSQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-fixture-only
+          POSTGRES_DB: akp_rls_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d akp_rls_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: postgres
+      PGPASSWORD: ci-fixture-only
+      PGDATABASE: akp_rls_ci
+      PGSSLMODE: disable
+    steps:
+      - name: Checkout isolated PR branch
+        uses: actions/checkout@v4
+      - name: Verify PostgreSQL client
+        run: |
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y postgresql-client
+          fi
+          psql --version
+          test "$PGDATABASE" = "akp_rls_ci"
+      - name: Run ACTUAL PostgreSQL RLS policies with fake workers and JWT
+        run: psql -X -v ON_ERROR_STOP=1 -f tests/rls_isolated/10_run.sql
+      - name: Private messenger RLS and disable-only rollback
+        run: psql -X -v ON_ERROR_STOP=1 -f tests/rls_isolated/20_chat.sql
+      - name: Account and assignment audit RLS (synthetic changes only)
+        run: psql -X -v ON_ERROR_STOP=1 -f tests/rls_isolated/30_team_history.sql
+      - name: Explain production gate
+        run: |
+          echo "This was an ISOLATED PostgreSQL service with synthetic identities."
+          echo "PASS is NOT authorization to publish or change Supabase."
+          echo "Worker security migration 20261017181541 is already applied; DO NOT REPEAT."
+          echo "New chat SQL is REVIEW ONLY; no production migration or deploy is authorized."

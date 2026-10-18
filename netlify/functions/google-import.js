@@ -10,19 +10,15 @@ function mapRows(values){
  return values.slice(1).filter(v=>v.some(x=>String(x).trim())).map(v=>{
   const r=Object.fromEntries(headers.map((h,i)=>[h,String(v[i]??'').trim()]));const ref=normalizeReference(r);
   if(!ref||seen.has(ref))throw new Error('Brak identyfikatora lub duplikat: '+ref);seen.add(ref);
-  const state=r.STATUS;let status='NOWE';
-  if(/ZAKONCZONE|ANULOWANE|WYKONANE_ROZLICZONE/.test(state))status='ZAKONCZONE';
-  else if(/WSTRZYMANE/.test(state))status='WSTRZYMANE';
-  else if(/SERWIS|REKLAMACJA/.test(state))status='SERWIS';
-  else if(/REALIZACJI/.test(state))status='REALIZACJA';
-  else if(/UMOWIONE/.test(state))status='PLANOWANE';
-  else if(/POMIAR/.test(state))status='POMIARY';
-  else if(/DO_ROZLICZENIA/.test(state))status='WSTRZYMANE';
+  const state=r.STATUS;
+  const allowed=['NOWE','DO_KONTAKTU','DO_UMOWIENIA','UMOWIONE','POMIAR','DO_WYCENY','WYCENA_W_TOKU','OCZEKUJE_NA_KLIENTA','OCZEKUJE_NA_MATERIAL','OCZEKUJE_NA_DOSTAWE','DO_REALIZACJI','W_REALIZACJI','WSTRZYMANE','DO_ODBIORU','DO_ROZLICZENIA','ZAKONCZONE','REKLAMACJA','SERWIS','ANULOWANE','POMIARY','PLANOWANE','REALIZACJA'];
+  let status=state.startsWith('WYKONANE_ROZLICZONE')?'ZAKONCZONE':state;
+  if(!allowed.includes(status))throw new Error('Nieznany status źródłowy: '+state);
   const priority=['KRYTYCZNY','WYSOKI'].includes(r.PRIORYTET)?r.PRIORYTET:'NORMALNY';
   const planned=r.PLAN_START||r.DATA_POMIARU;const due_date=/^\d{4}-\d{2}-\d{2}$/.test(planned)?planned:null;
   // Financial notes and full source record are coordinator-only in akp_job_sources.
   const instructions=[r.KLIENT&&'Klient: '+r.KLIENT,r.TELEFON&&'Telefon: '+r.TELEFON,r.PRACOWNICY&&'Wykonawca wg Google: '+r.PRACOWNICY+' (konto/przydział do potwierdzenia)',r.NASTEPNY_KROK&&'Następny krok: '+r.NASTEPNY_KROK,r.BLOKADA&&'Blokada: '+r.BLOKADA].filter(Boolean).join('\n');
-  return {reference:ref,title:(r.TYP_PRACY+' — '+r.KLIENT).slice(0,180),location:r.ADRES.slice(0,200),due_date,status,priority,instructions:instructions.slice(0,2500),source_record:r,source_hash:createHash('sha256').update(JSON.stringify(r)).digest('hex')};
+  return {akp_id:r.ID_AKP,lm_number:r.NR_LM||null,iproc_number:r.NR_IPROC||null,client_name:r.KLIENT||null,client_phone:r.TELEFON||null,client_email:r.EMAIL||null,client_address:r.ADRES||null,reference:ref,title:(r.TYP_PRACY+' — '+r.KLIENT).slice(0,180),location:r.ADRES.slice(0,200),due_date,status,priority,instructions:instructions.slice(0,2500),source_record:r,source_hash:createHash('sha256').update(JSON.stringify(r)).digest('hex')};
  });
 }
 async function readSheet(token){

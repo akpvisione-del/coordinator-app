@@ -1,0 +1,285 @@
+/* AKP VISUAL SUPERSPRINT 02 — isolated presentation, based on Design40 + Unified/V19.
+   Load last. No API/Auth/role logic, no finance hiding, no external fonts/assets. */
+#appView{
+ --v-canvas:#f1f3f7;--v-surface:#fff;--v-raised:#fff;--v-soft:#f6f7fa;
+ --v-ink:#17212e;--v-muted:#5a6679;--v-line:#dce2eb;--v-red:#c9273d;
+ --v-red-soft:#fcecef;--v-blue:#2463c2;--v-blue-soft:#edf3ff;--v-green:#197252;
+ --v-sidebar:#111a28;--v-sidebar-text:#c2cddd;--v-shadow:0 8px 28px #142b4910;
+ --v-radius:20px;--v-gap:20px;--v-focus:#2463c2;
+ --akp-surface-bg:var(--v-canvas);--akp-surface-card:var(--v-surface);
+ --akp-surface-inset:var(--v-soft);--akp-text-primary:var(--v-ink);
+ --akp-text-secondary:var(--v-muted);--akp-border-subtle:var(--v-line);
+ --akp-red-ribbon:var(--v-red);--akp-red-soft:var(--v-red-soft);
+ --u-canvas:var(--v-canvas);--u-surface:var(--v-surface);--u-text:var(--v-ink);
+ --u-muted:var(--v-muted);--u-line:var(--v-line);--u-soft:var(--v-soft);
+ --u-red:var(--v-red);--u-red-soft:var(--v-red-soft);--u-ring:var(--v-focus);
+ --u-shadow:var(--v-shadow);--u-radius:var(--v-radius);
+ font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+ font-size:14px;line-height:1.55;letter-spacing:-.012em;color-scheme:light;
+}
+:root[data-theme="dark"] #appView{
+ --v-canvas:#0c121c;--v-surface:#141e2c;--v-raised:#192637;--v-soft:#101925;
+ --v-ink:#eef3fa;--v-muted:#acbbcf;--v-line:#2c3c50;--v-red:#ff7e8d;
+ --v-red-soft:#34202c;--v-blue:#8db9ff;--v-blue-soft:#152b47;--v-green:#7edbb4;
+ --v-sidebar:#080e17;--v-sidebar-text:#b6c5db;--v-shadow:0 10px 32px #00000024;
+ --v-focus:#9cc3ff;color-scheme:dark;
+}
+#appView,#appView *{box-sizing:border-box}
+#appView.shell{grid-template-columns:238px minmax(0,1fr);background:var(--v-canvas)}
+#appView .sidebar{background:var(--v-sidebar);border-right:1px solid #ffffff0b;padding:30px 16px 20px}
+#appView .side-brand{gap:11px;padding:0 8px 26px;border-bottom:1px solid #ffffff15}
+#appView .side-brand strong{font-size:17px;color:#f1f5fc;letter-spacing:-.04em}
+#appView .side-brand i{color:#ff7e8d;font-style:normal}
+#appView .side-brand small{font-size:9px;letter-spacing:.2em;color:#93a5bd}
+#appView .mark{background:linear-gradient(135deg,#e5344f,#a91d33);box-shadow:0 6px 20px #c9273d30;border-radius:14px;color:#fff;width:42px;height:42px}
+#appView .side-overline{font-size:9px;font-weight:800;letter-spacing:.18em;color:#8396b1;padding:28px 12px 12px}
+#appView .side-nav{display:grid;gap:6px}
+#appView .nav-item{color:var(--v-sidebar-text);padding:12px 14px;font-size:13px;font-weight:650;gap:13px;border:1px solid transparent;border-radius:12px;transition:background .16s,border-color .16s}
+#appView .nav-item:hover{background:#ffffff0a;color:#fff}
+#appView .nav-item.active{background:#c9273d22;color:#fff;border-color:#e9516644;box-shadow:inset 3px 0 #ed536a}
+#appView .navico{display:grid;place-items:center;width:27px;height:27px;background:#ffffff08;border-radius:8px;font-size:17px}
+#appView .safe-flag{background:#ffffff05;border:1px solid #ffffff12;color:#91a4bf;border-radius:12px;padding:12px}
+#appView .safe-flag b{color:#c5d2e5;font-size:9px;letter-spacing:.08em}
+#appView .safe-flag span,#appView .side-logout{color:#a6b6cc;font-size:11px}
+#appView .content-area{background:radial-gradient(ellipse at 90% 0,var(--v-blue-soft),transparent 42%),var(--v-canvas)}
+#appView .topbar{height:82px;padding-inline:32px;background:var(--v-surface);border-bottom:1px solid var(--v-line);box-shadow:none}
+#appView .crumb{font-size:10px;font-weight:650;letter-spacing:.04em;color:var(--v-muted)}
+#appView .top-left strong{font-size:16px;letter-spacing:-.035em;color:var(--v-ink)}
+#appView .connect-pill{background:var(--v-soft);color:var(--v-muted);border:1px solid var(--v-line);font-size:9px;letter-spacing:.025em;box-shadow:none}
+#appView .avatar{background:var(--v-red-soft);border:1px solid var(--v-line);color:var(--v-red);border-radius:13px;font-size:12px}
+#appView .page-content{max-width:1600px;width:100%;padding:24px 32px 52px}
+#appView .system-notice{padding:10px 14px;margin-bottom:24px;border-radius:12px;background:var(--v-soft);font-size:11px;box-shadow:none}
+#appView .page-hero{gap:16px;margin:0 0 26px;align-items:center}
+#appView .page-hero h1{font-size:clamp(28px,3vw,38px);font-weight:780;letter-spacing:-.055em;line-height:1.15;margin:0;color:var(--v-ink)}
+#appView .page-hero p{font-size:13px;max-width:65ch;margin-top:8px;color:var(--v-muted)}
+#appView .card{background:var(--v-surface);border:1px solid var(--v-line);border-radius:var(--v-radius);padding:22px;box-shadow:var(--v-shadow);margin-bottom:20px}
+#appView .card-head{margin-bottom:18px;align-items:center}
+#appView .card h2{font-size:17px;letter-spacing:-.03em;font-weight:750}
+#appView .card h3{font-size:15px;font-weight:700}
+#appView .btn{background:var(--v-surface);border:1px solid var(--v-line);color:var(--v-ink);border-radius:11px;min-height:48px;padding:11px 15px;font-size:12px;font-weight:700;box-shadow:0 2px 3px #142b4905;transition:background .16s,border-color .16s,box-shadow .16s;transform:none;line-height:1.35}
+#appView .btn:hover{background:var(--v-soft);border-color:var(--v-muted);transform:none}
+#appView .btn.primary{background:#c9273d;border-color:#c9273d;color:#fff;box-shadow:0 4px 12px #c9273d24}
+#appView .btn.primary:hover{background:#af1e33;border-color:#af1e33}
+#appView .btn:disabled{opacity:.55;box-shadow:none;cursor:wait}
+#appView .theme-toggle,#appView .top-logout{min-width:48px;min-height:48px;border-radius:12px}
+#appView :is(button,input,select,textarea,a,summary):focus-visible{outline:3px solid var(--v-focus);outline-offset:3px}
+#appView .f04a-dashboard{padding:0;background:none;border:0;box-shadow:none}
+#appView .f04a-active-explainer{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--v-muted);margin-bottom:16px}
+#appView .f04a-active-explainer strong{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;background:var(--v-blue-soft);color:var(--v-blue);border-radius:9px;font-size:14px}
+#appView .f04a-kpi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0 0 18px}
+#appView .f04a-kpi{position:relative;display:grid;grid-template-columns:1fr auto;align-content:start;text-align:left;gap:10px;min-height:160px;padding:22px;background:var(--v-surface);border:1px solid var(--v-line);border-radius:var(--v-radius);box-shadow:var(--v-shadow);transition:border-color .16s,box-shadow .16s}
+#appView .f04a-kpi-icon{grid-column:2;grid-row:1;display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:var(--v-red-soft);color:var(--v-red);font-size:19px}
+#appView .f04a-kpi strong{grid-column:1;grid-row:1;font-size:42px;line-height:1.1;font-weight:760;letter-spacing:-.055em;color:var(--v-ink)}
+#appView .f04a-kpi>span:last-child{grid-column:1/-1;color:var(--v-muted);font-size:13px;font-weight:600}
+#appView .f04a-kpi[data-dashboard-filter="TODAY"]{background:linear-gradient(135deg,var(--v-surface),var(--v-blue-soft))}
+#appView .f04a-kpi[data-dashboard-filter="TODAY"] .f04a-kpi-icon{background:var(--v-blue-soft);color:var(--v-blue)}
+#appView .f04a-more-kpis{margin:0 0 26px;border:1px dashed var(--v-line);border-radius:14px;background:var(--v-soft);padding:4px 16px}
+#appView .f04a-more-kpis summary{min-height:48px;display:list-item;padding:13px 0;color:var(--v-muted);font-size:12px;cursor:pointer}
+#appView .f04a-more-kpis .f04a-kpi-grid{padding-top:8px}
+#appView .f04a-day-plan{background:transparent;border:0;padding:0;margin:0 0 20px}
+#appView .f04a-day-plan h3{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:13px;padding-bottom:10px;border-bottom:1px solid var(--v-line)}
+#appView .f04a-day-plan h3 small{color:var(--v-muted);font-size:11px;font-weight:500}
+#appView .f04a-plan-track{gap:12px}
+#appView .f04a-plan-job{min-width:190px;background:var(--v-soft);border:1px solid var(--v-line);border-inline-start:3px solid var(--v-blue);border-radius:12px;padding:14px;text-align:left;box-shadow:none}
+#appView .f04a-plan-job small{color:var(--v-muted);font-size:10px}
+#appView .f04a-plan-job strong{font-size:12px;color:var(--v-ink)}
+#appView .jobs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#appView .job-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid var(--v-line);background:var(--v-surface);border-radius:18px;box-shadow:var(--v-shadow);min-width:0;overflow-wrap:anywhere;transition:border-color .16s,box-shadow .16s}
+#appView .job-card-header{display:flex;align-items:start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+#appView .job-ref .ref-badge{color:var(--v-red);background:var(--v-red-soft);padding:5px 8px;border-radius:7px;font-size:10px;font-weight:800;letter-spacing:.02em}
+#appView .job-due-chip{background:var(--v-soft);color:var(--v-muted);border:1px solid var(--v-line);border-radius:7px;padding:5px 7px;font-size:10px;line-height:1.4}
+#appView .job-card .job-title{font-size:19px;font-weight:760;letter-spacing:-.035em;line-height:1.3;margin:4px 0}
+#appView .job-card :is(.job-client,.location){font-size:12px;line-height:1.6;margin:0}
+#appView .crew-badges{display:flex;gap:5px;flex-wrap:wrap}
+#appView .source-tags{gap:5px;margin:0}
+#appView .tag{font-size:9px;font-weight:750;letter-spacing:.015em;border-radius:6px;padding:5px 7px;line-height:1.4;border:1px solid var(--v-line);background:var(--v-soft);color:var(--v-muted)}
+#appView .tag.red{background:var(--v-red-soft);color:var(--v-red);border-color:transparent}
+#appView .tag.green{background:var(--v-soft);color:var(--v-green)}
+#appView .job-card.priority-critical{border-top:3px solid var(--v-red);background:var(--v-surface)}
+#appView .job-card.priority-high{border-top:3px solid var(--v-blue);background:var(--v-surface)}
+#appView .job-card .job-card-actions{margin-top:auto;padding-top:6px}
+#appView .job-toggle-btn{min-height:48px;width:100%;justify-content:center}
+#appView .job-detail{padding:24px;background:var(--v-surface);border:1px solid var(--v-line);border-radius:20px}
+#appView .f04a-detail-section{padding:20px;margin-top:20px;border:1px solid var(--v-line);border-radius:16px;box-shadow:none;background:var(--v-surface)}
+#appView .f04a-detail-jump{padding:8px;gap:8px;background:var(--v-soft);border:1px solid var(--v-line);border-radius:14px}
+#appView .f04a-jump{border-radius:9px;font-size:12px;min-height:48px}
+#appView .client-info-box{background:var(--v-blue-soft);border:1px solid var(--v-line);box-shadow:none;border-radius:14px;padding:18px}
+#appView .f04a-action{border-color:var(--v-line);background:var(--v-soft);color:var(--v-ink)}
+#appView .jobs-filter-panel{background:var(--v-surface);padding:18px;border-radius:16px;box-shadow:none;margin-bottom:18px}
+#appView .search-input{border-radius:12px;background:var(--v-soft);font-size:14px}
+#appView .chip{min-height:44px;border:1px solid var(--v-line);background:var(--v-surface);color:var(--v-muted);border-radius:9px;font-size:11px;padding:8px 12px}
+#appView .chip.active{background:var(--v-red-soft);color:var(--v-red);border-color:var(--v-red)}
+#appView .filter-summary{font-size:11px;color:var(--v-muted)}
+@media(min-width:1600px){#appView .jobs-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px) and (min-width:851px){#appView.shell{grid-template-columns:205px minmax(0,1fr)}#appView .jobs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#appView .page-content{padding-inline:22px}}
+@media(max-width:850px){
+ #appView.shell{grid-template-columns:minmax(0,1fr)}
+ #appView .sidebar{display:none}
+ #appView .topbar{height:72px;padding-inline:18px;gap:10px}
+ #appView .page-content{padding:20px 16px 120px}
+ #appView .top-left strong{font-size:14px}
+ #appView .mobile-nav{display:flex;gap:2px;padding:6px 6px max(8px,env(safe-area-inset-bottom));background:var(--v-surface);border-top:1px solid var(--v-line);box-shadow:0 -6px 24px #00000010;backdrop-filter:none}
+ #appView .mobile-nav button{flex:1;min-width:0;min-height:58px;padding:6px 2px;gap:4px;font-size:10px;font-weight:650;border:1px solid transparent;border-radius:12px;color:var(--v-muted)}
+ #appView .mobile-nav button.active{background:var(--v-red-soft);border-color:var(--v-line);color:var(--v-red)}
+ #appView .mobile-nav button>span:first-child{font-size:19px;line-height:22px}
+ #appView .jobs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #appView .job-card{padding:14px;border-radius:15px;gap:8px}
+ #appView .job-card .job-title{font-size:16px;line-height:1.4}
+ #appView .job-card :is(.location,.job-client){font-size:11px}
+ #appView .job-card-header{display:grid;gap:7px}
+ #appView .job-ref .ref-badge{font-size:9px;padding:5px 6px}
+ #appView .job-due-chip{font-size:9px;padding:4px 6px}
+ #appView .job-card .btn{padding:10px 7px;font-size:11px}
+ #appView .tag{font-size:8px;padding:4px 5px}
+ #appView .f04a-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #appView .f04a-dashboard>.f04a-kpi-grid>.f04a-kpi:first-child{grid-column:1/-1;min-height:126px;background:linear-gradient(115deg,var(--v-surface),var(--v-red-soft))}
+ #appView .f04a-kpi{padding:18px;min-height:136px}
+ #appView .f04a-kpi strong{font-size:36px}
+ #appView .f04a-kpi>span:last-child{font-size:12px}
+ #appView .card{padding:18px;border-radius:17px}
+ #appView .page-hero{margin-bottom:20px;align-items:flex-start}
+ #appView .hero-actions .btn{font-size:11px;padding:10px;min-height:48px}
+ #appView .connect-pill{font-size:8px;padding:6px}
+ #appView .theme-toggle,#appView .top-logout{min-width:44px;min-height:48px;padding:8px}
+ #appView .f04a-detail-section{padding:16px}
+ #appView .f04a-detail-page>.job-detail{padding:16px}
+}
+@media(prefers-reduced-motion:reduce){
+ #appView *,#appView *::before,#appView *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+/* Targeted normalization of inherited !important typography in the legacy sheet. */
+#appView .page-hero h1{font-size:clamp(28px,3vw,38px)!important}
+#appView .f04a-kpi strong,#appView .f04a-kpi>span:last-child{text-align:left}
+#appView .akp-install-strip{padding:0 32px;display:flex;justify-content:flex-end;background:transparent}
+#appView .akp-install-strip .akp-install-button{min-height:48px;background:transparent;color:var(--v-muted);border:0;box-shadow:none;font-size:11px;font-weight:600;padding:8px 0}
+#appView .f04a-system-notice{padding:0}
+#appView .f04a-system-notice summary{min-height:48px;padding:12px 14px}
+#appView .card:has(>.f04a-day-plan){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#appView .card:has(>.f04a-day-plan)>.card-head{grid-column:1/-1;margin-bottom:0}
+#appView .card:has(>.f04a-day-plan)>.f04a-day-plan{min-width:0;margin:0}
+#appView .card:has(>.f04a-day-plan) .f04a-plan-track{padding-bottom:8px}
+@media(max-width:850px){
+ #appView .page-hero h1{font-size:28px!important}
+ #appView .akp-install-strip{padding-inline:16px}
+ #appView .mobile-nav button>span:first-child{font-size:21px!important}
+ #appView .mobile-nav button>span:last-child{font-size:11px!important;line-height:1.2;overflow-wrap:normal;white-space:nowrap}
+ #appView .mobile-nav:has([data-nav="team"]) button>span:last-child{font-size:9.5px!important}
+ #appView .card:has(>.f04a-day-plan){gap:12px;padding:16px}
+ #appView .card:has(>.f04a-day-plan) .f04a-day-plan h3{display:block;font-size:12px}
+ #appView .card:has(>.f04a-day-plan) .f04a-day-plan h3 small{display:block;font-size:10px;margin-top:2px}
+ #appView .card:has(>.f04a-day-plan) .f04a-plan-job{min-width:100%;width:100%;flex:0 0 100%;padding:12px;font-size:11px}
+}
+/* Module 2 — operational surfaces. Original controls and handlers are retained. */
+#appView :is(input,select,textarea):not([type="checkbox"]):not([type="radio"]){min-width:0;min-height:48px;width:100%;border:1px solid var(--v-line);background:var(--v-soft);color:var(--v-ink);border-radius:11px;padding:11px 13px;font-size:14px;line-height:1.5;box-shadow:inset 0 1px 2px #00000003}
+#appView :is(input,textarea)::placeholder{color:var(--v-muted);opacity:.85}
+#appView input[type="checkbox"],#appView input[type="radio"]{accent-color:#c9273d;min-width:22px;min-height:22px}
+#appView label{font-size:12px;font-weight:650;color:var(--v-muted);line-height:1.5}
+#appView .form-grid{gap:16px}
+#appView :is(.job-edit-form,.report-form,.photo-upload-form){padding:20px;background:var(--v-soft);border:1px solid var(--v-line);border-radius:14px}
+#appView .form-error{padding:13px 15px;border:1px solid var(--v-red);border-radius:11px;background:var(--v-red-soft);color:var(--v-red);font-size:13px;line-height:1.6}
+#appView .hint,#appView .meta{font-size:11px;line-height:1.6;color:var(--v-muted)}
+#appView .empty{padding:28px 18px;background:var(--v-soft);border:1px dashed var(--v-line);border-radius:13px;font-size:13px;line-height:1.65;color:var(--v-muted);text-align:center}
+#appView .worker-empty .empty-ico{font-size:30px;opacity:.7;margin-bottom:8px}
+#appView details>summary{cursor:pointer;color:var(--v-ink);min-height:48px;padding:12px 14px;border-radius:11px;font-size:12px;line-height:1.6}
+#appView details>summary::marker{color:var(--v-muted)}
+#appView details[open]>summary{margin-bottom:12px;background:var(--v-soft)}
+#appView :is(.navico,.f04a-kpi-icon),#appView .mobile-nav button>span:first-child{font-family:"DejaVu Sans","Segoe UI Symbol",sans-serif;font-variant-emoji:text}
+#appView .card:has(#teamSearch) .item-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+#appView .card:has(#teamSearch) .action-line{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start;background:var(--v-soft);border:1px solid var(--v-line);border-radius:16px;padding:20px;box-shadow:none;overflow-wrap:anywhere}
+#appView .card:has(#teamSearch) .line-main{min-width:0;padding:0}
+#appView .card:has(#teamSearch) .line-main>strong{font-size:17px;font-weight:750;line-height:1.5}
+#appView .card:has(#teamSearch) .line-main>p{font-size:12px;margin:10px 0 14px;color:var(--v-muted)}
+#appView .card:has(#teamSearch) :is(.btn,summary){width:100%;justify-content:center;text-align:center}
+#appView .card:has(#teamSearch) .worker-edit-form{grid-template-columns:minmax(0,1fr);gap:14px}
+#appView .card:has(#teamSearch) details{min-width:0;border-top:1px solid var(--v-line);padding-top:10px}
+#appView .card:has(#teamSearch) [data-worker-toggle]{color:var(--v-red);border-color:var(--v-line);background:var(--v-red-soft);margin-top:12px;white-space:normal}
+#appView .team-filters{display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,1fr);gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--v-line)}
+#appView .team-filters label{min-width:0}
+#appView .team-history{min-width:0;font-size:11px;line-height:1.6;background:var(--v-surface);border:1px solid var(--v-line);border-radius:12px;padding:12px}
+#appView .team-history article{padding:12px 0}
+#appView .team-history article:first-child{padding-top:0}
+#appView .crew-member-row{background:var(--v-soft);border:1px solid var(--v-line);border-radius:12px;padding:12px 14px;gap:12px}
+#appView .crew-name{font-size:13px}
+#appView .crew-name small{font-size:10px;color:var(--v-muted)}
+#appView .crew-add-bar{margin-top:18px;gap:12px}
+#appView .crew-section{padding:18px;border-radius:14px;box-shadow:none;background:var(--v-surface)}
+#appView .chat-layout{grid-template-columns:minmax(240px,.8fr) minmax(0,1.8fr);gap:20px;align-items:start}
+#appView .chat-layout .card{box-shadow:var(--v-shadow);margin:0}
+#appView .chat-layout h2{font-size:18px;font-weight:750;margin-bottom:20px;letter-spacing:-.035em}
+#appView .chat-threads>form{padding:16px;background:var(--v-soft);border:1px solid var(--v-line);border-radius:13px;margin-bottom:20px}
+#appView .chat-threads>nav{padding-top:8px;border-top:1px solid var(--v-line)}
+#appView .chat-thread{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--v-surface);padding:14px;min-height:64px;line-height:1.5;border:1px solid transparent;border-radius:12px;box-shadow:none;font-size:13px;font-weight:650}
+#appView .chat-thread::before{content:"✉︎";display:grid;place-items:center;flex:0 0 32px;height:32px;background:var(--v-blue-soft);border-radius:10px;color:var(--v-blue);font-size:17px}
+#appView .chat-thread[aria-current]{background:var(--v-blue-soft);border-color:var(--v-blue);outline:none;color:var(--v-ink)}
+#appView .chat-thread strong{display:grid;place-items:center;min-width:26px;height:26px;border-radius:8px;background:var(--v-surface);color:var(--v-blue);font-size:11px}
+#appView .chat-conversation>h2{padding-bottom:16px;border-bottom:1px solid var(--v-line)}
+#appView .chat-conversation>[role="search"]{display:grid;grid-template-columns:minmax(0,1fr) 48px;align-items:end;gap:10px;margin-block:18px}
+#appView .chat-log{display:flex;flex-direction:column;gap:14px;max-height:480px;min-height:220px;padding:18px 6px 18px 0;scrollbar-width:thin;scrollbar-color:var(--v-line) transparent}
+#appView .chat-message{align-self:flex-start;max-width:90%;margin:0;padding:16px 18px;border:1px solid var(--v-line);border-radius:4px 16px 16px 16px;background:var(--v-soft);box-shadow:none;font-size:14px;line-height:1.7}
+#appView .chat-message.chat-own{align-self:flex-end;background:var(--v-blue-soft);border:1px solid var(--v-line);border-radius:16px 4px 16px 16px}
+#appView .chat-message>small{font-size:10px;line-height:1.5;color:var(--v-muted)}
+#appView .chat-message>p{color:var(--v-ink);margin:8px 0}
+#appView .chat-message .btn{font-size:11px;background:var(--v-surface);min-height:44px}
+#appView [data-chat-form="send"]{padding-top:18px;border-top:1px solid var(--v-line);grid-template-columns:minmax(0,1fr) auto;align-items:end}
+#appView [data-chat-form="send"]>label:first-child{grid-column:1/-1}
+#appView [data-chat-form="send"] textarea{background:var(--v-soft);min-height:106px;resize:vertical}
+#appView [data-chat-action="read"]{font-size:11px;color:var(--v-blue);background:var(--v-blue-soft);border-color:var(--v-line);box-shadow:none}
+#appView .schedule-toolbar{padding:16px;background:var(--v-surface);border:1px solid var(--v-line);border-radius:16px;gap:12px;align-items:end;margin-bottom:20px}
+#appView .schedule-toolbar label{min-width:0;display:grid;gap:6px}
+#appView .schedule-toolbar button{min-width:48px}
+#appView .schedule-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch;margin-bottom:20px}
+#appView .schedule-grid>.card{padding:18px;border-radius:16px;background:var(--v-soft);box-shadow:none;min-height:180px}
+#appView .schedule-grid>.card:has(.schedule-job){border-top:3px solid var(--v-blue);background:var(--v-surface)}
+#appView .schedule-grid .card-head{padding-bottom:12px;margin-bottom:0;border-bottom:1px solid var(--v-line)}
+#appView .schedule-grid h2{font-size:14px;color:var(--v-muted)}
+#appView .schedule-job{padding:16px 0;display:grid;gap:8px}
+#appView .schedule-job>p{font-size:11px;line-height:1.6;color:var(--v-muted);margin:0}
+#appView .schedule-job>.btn{background:var(--v-soft);text-align:left;justify-content:start;font-size:12px;line-height:1.5;display:block;white-space:normal}
+#appView .schedule-form{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+#appView .schedule-form label{min-width:0;font-size:11px}
+#appView .schedule-form .btn{min-height:48px;font-size:11px;background:var(--v-blue-soft);color:var(--v-blue);border-color:var(--v-line);box-shadow:none}
+#appView .schedule-warning{color:var(--v-red)!important;background:var(--v-red-soft);padding:12px;border:0;border-radius:9px;font-size:11px!important;line-height:1.6}
+#appView .schedule-grid .empty{font-size:11px;padding:20px 10px;border:0;background:transparent}
+#appView .lang-selector{gap:12px}
+#appView .lang-btn{background:var(--v-soft);color:var(--v-ink);border:1px solid var(--v-line);border-radius:11px;min-height:48px}
+#appView .lang-btn.active{background:var(--v-red-soft);color:var(--v-red);border-color:var(--v-red);box-shadow:none}
+#appView .detail-row{font-size:13px;grid-template-columns:130px minmax(0,1fr);border-color:var(--v-line);padding:13px 0}
+#appView .detail-row>span{font-size:12px;color:var(--v-muted)}
+#appView .worker-action-bar .btn{min-height:48px;background:var(--v-blue-soft);color:var(--v-blue);border-color:var(--v-line);white-space:normal}
+#appView .worker-action-bar .worker-btn-call{background:var(--v-red-soft);color:var(--v-red)}
+#appView .f04a-quick-actions{gap:10px}
+#appView .photo-upload-form{border-style:dashed}
+#appView .photo-item{background:var(--v-soft);border-color:var(--v-line);border-radius:12px}
+#appView .f04a-storage-warning,#appView .storage-notice,#appView .safe-callout{background:var(--v-blue-soft);color:var(--v-blue);border-color:var(--v-line);font-size:12px;line-height:1.7}
+@media(min-width:1600px){#appView .schedule-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px){#appView .card:has(#teamSearch) .item-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){
+ #appView .card:has(#teamSearch) .item-list{grid-template-columns:minmax(0,1fr)}
+ #appView .card:has(#teamSearch) .action-line{padding:18px}
+ #appView .team-filters{grid-template-columns:minmax(0,1fr) minmax(108px,.6fr);gap:10px;margin-bottom:18px}
+ #appView .team-filters select{padding-inline:8px;font-size:12px}
+ #appView .chat-layout{grid-template-columns:minmax(0,1fr);gap:16px}
+ #appView .chat-threads>form{margin-top:0}
+ #appView .chat-log{max-height:400px;min-height:180px;padding-block:14px}
+ #appView .chat-message{font-size:13px;max-width:94%;padding:13px 15px}
+ #appView .chat-conversation>[role="search"]{margin-block:14px}
+ #appView [data-chat-form="send"]{grid-template-columns:minmax(0,1fr)}
+ #appView [data-chat-form="send"]>label:first-child{grid-column:auto}
+ #appView .schedule-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+ #appView .schedule-grid>.card{min-height:0;padding:16px}
+ #appView .schedule-toolbar{padding:14px;gap:10px;display:grid;grid-template-columns:48px minmax(0,1fr) 48px}
+ #appView .schedule-toolbar>label:last-child:has(select){grid-column:1/-1}
+ #appView .schedule-form{grid-template-columns:minmax(0,1fr) auto;align-items:end}
+ #appView .schedule-form .form-error{grid-column:1/-1}
+ #appView .detail-row{grid-template-columns:100px minmax(0,1fr);gap:10px;font-size:12px}
+ #appView :is(input,select,textarea):not([type="checkbox"]):not([type="radio"]){font-size:16px}
+ #appView .crew-member-row{display:flex;flex-wrap:wrap;align-items:center}
+ #appView .crew-add-bar{display:grid;grid-template-columns:minmax(0,1fr)}
+ #appView .job-edit-form,#appView .report-form{padding:14px}
+ #appView .f04a-plan-job span{font-size:11px}
+}
+/* Resolve legacy compound-selector specificity without changing original sheets. */
+#appView .sidebar .nav-item.active{background:#c9273d22;color:#fff;border-color:#e9516644;box-shadow:inset 3px 0 #ed536a}
+#appView .chat-layout .chat-message>p{color:var(--v-ink)}
+#appView .system-notice :is(strong,.f04a-disclosure-hint){color:var(--v-muted)}
+#appView .f04a-advanced-filters summary{background:var(--v-soft);border:1px solid var(--v-line);color:var(--v-muted)}

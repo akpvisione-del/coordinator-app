@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#101722">
+<title>AKP Commander Unified · Mobile UI preview v02.1</title>
+<link rel="stylesheet" href="/unified-preview.css?v=20261016-022"></head>
+<body>
+<div class="demo-badge">AKP DEV · PROTOTYP WIZUALNY · DANE WYŁĄCZNIE DEMO / DANE FIKCYJNE · BEZ API I LOGOWANIA</div>
+<div class="layout">
+<aside class="rail">
+ <div class="logo"><div class="mark">A✦</div><div><b>AKP COMMANDER</b><small>UNIFIED · UI v02.1</small></div></div>
+ <div class="menu" aria-label="Menu podglądu">
+  <button class="menu-btn active" data-view="home"><span class="ico">⌂</span>Pulpit</button>
+  <button class="menu-btn" data-view="jobs"><span class="ico">▦</span>Zlecenia</button>
+  <button class="menu-btn" data-view="detail"><span class="ico">▤</span>Karta zlecenia</button>
+  <button class="menu-btn" data-view="field"><span class="ico">◈</span>Monter</button>
+  <button class="menu-btn" data-view="more"><span class="ico">☷</span>Więcej</button>
+ </div><div class="rail-foot">Bezpieczny podgląd UI. Edycje i przyciski nie zapisują danych w systemie.</div>
+</aside>
+<div class="app">
+<header class="app-head">
+ <div><div class="head-eyebrow">AKP VISIONE / DESIGN PREVIEW</div><div class="head-title" id="currentTitle">Centrum koordynatora</div></div>
+ <div class="head-actions"><button class="icon-btn" id="themeButton" aria-label="Przełącz motyw" title="Motyw jasny/ciemny">☀</button><div class="avatar" aria-label="Konto demonstracyjne">AK</div></div>
+</header>
+<main>
+<section class="view active" data-screen="home">
+ <p class="eyebrow">Piątek · wersja demonstracyjna</p><h1 class="headline">Dobry wieczór.<br>Wszystko pod kontrolą.</h1>
+ <div class="kpis"><div class="kpi"><div class="kpi-top"><span class="kicon">▦</span><span class="pill">Aktywne</span></div><div class="count">22</div><div class="name">Zlecenia</div></div><div class="kpi"><div class="kpi-top"><span class="kicon">◷</span></div><div class="count">5</div><div class="name">Do umówienia</div></div><div class="kpi"><div class="kpi-top"><span class="kicon">✓</span></div><div class="count">3</div><div class="name">Odbiory</div></div><div class="kpi"><div class="kpi-top"><span class="kicon">⚑</span></div><div class="count">2</div><div class="name">Pilne</div></div></div>
+ <h2 class="section-title">Szybkie działania</h2>
+ <div class="action-row"><button class="action-btn" data-view="jobs"><span>＋</span>Zlecenia</button><button class="action-btn" data-view="field"><span>◈</span>Monter</button><button class="action-btn" data-view="more"><span>☷</span>Raporty</button></div>
+ <h2 class="section-title">Do sprawdzenia <small>Dane przykładowe</small></h2>
+ <div class="stack"><div class="list-item"><div class="list-icon">◷</div><div class="list-copy"><strong>Pomiar kuchni · dziś</strong><small>Warszawa · 11:00</small></div><span class="chevron">›</span></div><div class="list-item"><div class="list-icon">!</div><div class="list-copy"><strong>Akceptacja wyceny</strong><small>Wymaga decyzji koordynatora</small></div><span class="chevron">›</span></div></div>
+</section>
+<section class="view" data-screen="jobs">
+ <p class="eyebrow">Zarządzanie zleceniami</p><h1 class="headline">Zlecenia <span class="demo-inline-hint">DEMO</span></h1>
+ <label class="search"><span aria-hidden="true">⌕</span><input id="searchJob" placeholder="Szukaj zlecenia..." autocomplete="off" aria-label="Szukaj zlecenia"></label>
+ <div class="filters" role="group" aria-label="Filtry zleceń"><button class="chip active" data-filter="all">Wszystkie</button><button class="chip" data-filter="active">Realizacja</button><button class="chip" data-filter="planned">Umówione</button><button class="chip" data-filter="urgent">Pilne</button></div>
+ <div class="jobs" id="jobGrid">
+  <article class="job" data-name="montaż kuchni ursus" data-status="active"><div class="job-top"><span class="job-id">AKP-DEMO-001</span><span class="job-dot"></span></div><h3>Montaż kuchni</h3><p>⌖ Warszawa, Ursus</p><p>◷ 22 października</p><span class="pill good">W realizacji</span><button class="primary" data-view="detail">Otwórz kartę →</button></article>
+  <article class="job" data-name="pomiar łazienki mokotów" data-status="planned"><div class="job-top"><span class="job-id">AKP-DEMO-002</span><span class="job-dot"></span></div><h3>Pomiar łazienki</h3><p>⌖ Mokotów</p><p>◷ 24 października</p><span class="pill">Umówione</span><button class="primary" data-view="detail">Otwórz kartę →</button></article>
+  <article class="job" data-name="serwis drzwi ochota pilne" data-status="urgent"><div class="job-top"><span class="job-id">LM-DEMO-003</span><span class="job-dot is-urgent"></span></div><h3>Regulacja drzwi</h3><p>⌖ Ochota</p><p>◷ 23 października</p><span class="pill warn">Pilne</span><button class="primary" data-view="detail">Otwórz kartę →</button></article>
+  <article class="job" data-name="płytki żoliborz realizacja" data-status="active"><div class="job-top"><span class="job-id">AKP-DEMO-004</span><span class="job-dot"></span></div><h3>Płytki w kuchni</h3><p>⌖ Żoliborz</p><p>◷ 26 października</p><span class="pill good">W realizacji</span><button class="primary" data-view="detail">Otwórz kartę →</button></article>
+ </div><p id="emptyJobs" class="footer-note" hidden>Brak pasujących zleceń.</p>
+</section>
+<section class="view" data-screen="detail">
+ <p class="eyebrow">Zlecenie / AKP-DEMO-001</p><h1 class="headline">Montaż kuchni</h1>
+ <div class="panel"><span class="pill good">W realizacji</span><div class="info-row"><span>Klient</span><strong>Klient demonstracyjny</strong></div><div class="info-row"><span>Adres</span><strong>Warszawa, Ursus</strong></div><div class="info-row"><span>Termin</span><strong>22.10 · 09:00</strong></div><div class="info-row"><span>Monterzy</span><strong>2 osoby</strong></div></div>
+ <h2 class="section-title">Działania zlecenia</h2><div class="two-cols"><button class="secondary" data-message="Wersja demonstracyjna — bez zapisu">✎ Edytuj</button><button class="secondary" data-message="Wersja demonstracyjna — bez plików">▧ Zdjęcia</button></div>
+ <h2 class="section-title">Etapy prac</h2><div class="panel"><label class="check-item"><input type="checkbox" checked>Odbiór materiałów</label><label class="check-item"><input type="checkbox">Montaż korpusów</label><label class="check-item"><input type="checkbox">Regulacja frontów</label><label class="check-item"><input type="checkbox">Protokół odbioru</label></div>
+ <p class="footer-note">Zaznaczenia działają wyłącznie w podglądzie i znikają po odświeżeniu.</p>
+</section>
+<section class="view" data-screen="field">
+ <p class="eyebrow">Panel montera · demonstracja</p><h1 class="headline">Moja praca</h1>
+ <div class="panel"><span class="pill good">Dzisiejsze zadanie</span><h2 class="section-title">Montaż kuchni</h2><div class="info-row"><span>Godzina</span><strong>09:00–16:00</strong></div><div class="info-row"><span>Miejsce</span><strong>Warszawa, Ursus</strong></div><div class="info-row"><span>Status</span><strong>Prace trwają</strong></div><div class="two-cols mt-14"><button class="primary no-mt" data-message="Podgląd DEMO — brak nawigacji">⌖ Nawigacja</button><button class="secondary" data-view="detail">▤ Checklista</button></div></div>
+ <h2 class="section-title">Raport po pracy</h2><div class="panel"><label class="field">Notatka (demo)<input placeholder="Co wykonano?" maxlength="100"></label><button class="primary mt-12" data-message="Nie wysłano raportu. To tylko DEMO.">Przygotuj raport</button></div>
+ <p class="footer-note">Ten widok nie ma finansów klienta. Kontrolę dostępu prawdziwego montera zapewnia backend, nie CSS.</p>
+</section>
+<section class="view" data-screen="more">
+ <p class="eyebrow">Zespół · raporty · system</p><h1 class="headline">Więcej</h1>
+ <h2 class="section-title">Zespół <small>Dane przykładowe</small></h2>
+ <div class="stack"><div class="worker"><div class="portrait">M</div><div><strong>Monter A</strong><small>2 zadania · aktywny</small></div></div><div class="worker"><div class="portrait">S</div><div><strong>Monter B</strong><small>1 zadanie · aktywny</small></div></div></div>
+ <h2 class="section-title">Raporty</h2><div class="list-item"><div class="list-icon">✓</div><div class="list-copy"><strong>Odbiór kuchni</strong><small>Do weryfikacji</small></div><span class="chevron">›</span></div>
+ <h2 class="section-title">System</h2><div class="setting"><strong>Wygląd i uprawnienia</strong><p>Podgląd motywu jasnego i ciemnego. Brak rzeczywistego logowania, uprawnień i synchronizacji.</p><button class="secondary mt-8" id="themeSecondary">Zmień motyw</button></div>
+</section>
+<p class="footer-note">AKP Unified UI v02.1 · izolowany podgląd interfejsu · brak API, klientów, finansów, kont, trwałego zapisu i synchronizacji.</p>
+</main>
+</div></div>
+<nav class="bottom-nav" aria-label="Nawigacja podglądu">
+<button class="active" data-view="home"><span>⌂</span>Pulpit</button>
+<button data-view="jobs"><span>▦</span>Zlecenia</button>
+<button data-view="detail"><span>▤</span>Karta</button>
+<button data-view="field"><span>◈</span>Monter</button>
+<button data-view="more"><span>☷</span>Więcej</button>
+</nav>
+<script src="/unified-preview.js?v=20261016-022" defer></script>
+<div id="toast" class="toast-overlay" role="status" aria-live="polite" hidden></div>
+</body></html>

@@ -1,19 +1,62 @@
 <!doctype html>
-<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101114"><meta name="description" content="AKP AI Commander — panel koordynatora i pracownika z kontrolą dostępu."><meta name="robots" content="noindex,nofollow"><title>AKP COMMANDER · System firmy</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/landing.css"></head><body>
-<div id="loginView" class="cinema-login">
- <div class="world" aria-hidden="true"><div class="world-fallback">AKP</div><canvas id="akpWorld"></canvas><div class="world-shade"></div></div>
- <header class="landing-header"><a class="wordmark" href="/" aria-label="AKP VisiOne — strona główna">AKP<span>VISIONE</span></a><span class="header-caption">COMMANDER / CENTRUM OPERACYJNE</span><button id="motionToggle" type="button" aria-pressed="false">Wstrzymaj ruch <span>Ⅱ</span></button></header>
- <main class="landing-main"><section class="landing-copy"><div class="landing-kicker"><span></span> TWOJA FIRMA. TWÓJ KIERUNEK.</div><h1>Widzisz więcej.<br><span>Działasz pewniej.</span></h1><p>Zlecenia, ludzie i decyzje.<br>Cała perspektywa w jednym miejscu.</p><div class="landing-index"><b>01</b><span>OD PLANU<br>DO REALIZACJI</span><i></i></div></section>
- <section class="login-box cinema-card" aria-labelledby="welcome"><div class="card-cap"><span>DOSTĘP DO SYSTEMU</span><span class="card-star">✳</span></div><h2 id="welcome">Twój punkt<br>dowodzenia.</h2><p>Zaloguj się na konto firmowe.</p><form id="loginForm"><label for="username">E-mail</label><input id="username" name="email" type="email" autocomplete="username" inputmode="email" placeholder="adres@firma.pl" required><label for="password">Hasło</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Twoje hasło" required><button class="btn primary full" type="submit">Wejdź do Commandera <span>↗</span></button><div id="loginError" class="form-error" role="alert" hidden></div></form><div class="access-caption"><span>KOORDYNATOR</span><span class="small-dot"></span><span>EKIPA TERENOWA</span></div><p id="startupHealth" class="login-note" aria-live="polite"></p></section></main>
- <footer class="landing-footer"><span>AKP VISIONE <i>/</i> BUILT WITH VISION</span><span class="world-caption">PERSPEKTYWA ZMIENIA WSZYSTKO <b>↗</b></span></footer>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101114"><meta name="description" content="AKP AI Commander — panel koordynatora i pracownika z kontrolą dostępu."><meta property="og:title" content="AKP COMMANDER · System firmy"><meta property="og:description" content="AKP AI Commander — panel koordynatora i pracownika z kontrolą dostępu."><meta name="robots" content="noindex,nofollow"><title>AKP COMMANDER · System firmy</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/landing.css"><link rel="stylesheet" href="/field-assistant.css"><link rel="stylesheet" href="/auth-premium.css"><link rel="stylesheet" href="/akp-unified.css"><link rel="stylesheet" href="/akp-design-tokens.css"><script src="/auth-recovery-redirect.js" defer></script><link rel="manifest" href="/manifest.webmanifest?v=20261016-commander-pwa-v03"><link rel="stylesheet" href="/pwa-install.css"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="stylesheet" href="/akp-premium-v02.css"><link rel="stylesheet" href="/akp-pro.css">
+<link rel="stylesheet" href="/akp-premium-v03.css?v=20261018-01">
+</head><body>
+<div id="loginView" class="akp-auth-premium">
+  <div class="akp-auth-ambient" aria-hidden="true"></div>
+  <div class="akp-auth-art" aria-hidden="true">
+    <div class="akp-auth-architecture"></div>
+    <div class="akp-auth-orbit akp-auth-orbit-one"></div>
+    <div class="akp-auth-orbit akp-auth-orbit-two"></div>
+    <div class="akp-auth-glass"><span>AKP <em>✦</em> COMMANDER</span><strong>Twoje centrum operacyjne</strong><small>Zlecenia · Ekipy · Terminy · Dokumentacja</small></div>
+  </div>
+  <header class="akp-auth-nav">
+    <a class="akp-auth-brand" href="/" aria-label="AKP — powrót do strony głównej"><img src="/assets/akp-premium-logo.webp" width="148" height="90" alt="AKP — metaliczne logo z czerwoną wstęgą"><span><strong>COMMANDER</strong><small>HYBRID <b>PRO</b></small></span></a>
+    <a class="akp-auth-back" href="/">← Wróć na stronę</a>
+  </header>
+  <main class="akp-auth-main">
+    <section class="akp-auth-story" aria-labelledby="authStoryTitle">
+      <div class="akp-auth-kicker"><span></span> AKP VISIONE / STREFA FIRMOWA</div>
+      <h1 id="authStoryTitle">Twoja firma.<br>Jedno centrum.<br><span>Pełna kontrola.</span></h1>
+      <p>Wszystkie zlecenia, ekipy i terminy w jednym miejscu. Zaloguj się, aby przejść do prawdziwego panelu koordynatora lub montera.</p>
+      <div class="akp-auth-features" aria-label="Funkcje systemu"><span>✦ Zlecenia i wyceny</span><span>✦ Praca w terenie</span><span>✦ Dostęp według roli</span></div>
+    </section>
+    <section class="akp-auth-card" aria-labelledby="welcome">
+      <div class="akp-auth-card-header"><span><i></i> BEZPIECZNY DOSTĘP</span><span aria-hidden="true">✦</span></div>
+      <h2 id="welcome">Witaj w<br>Commanderze.</h2>
+      <p class="akp-auth-card-sub">Zaloguj się na swoje konto AKP.</p>
+      <form id="loginForm">
+        <label for="username">Adres e-mail</label>
+        <input id="username" name="email" type="email" inputmode="email" autocomplete="username" placeholder="twój@email.pl" required>
+        <label for="password">Hasło</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Wprowadź hasło" required>
+        <button type="submit" class="akp-auth-submit">Zaloguj się do aplikacji <span aria-hidden="true">↗</span></button>
+        <div id="loginError" class="form-error" role="alert" hidden></div>
+      </form>
+      <p><a href="/reset-password.html">Nie pamiętam hasła</a></p>
+      <p id="startupHealth" class="akp-auth-health" aria-live="polite"></p>
+      <button type="button" class="akp-install-button" data-akp-install>Zainstaluj aplikację</button><div class="akp-auth-card-foot">AKP COMMANDER · PREMIUM OPERATIONS v12</div>
+    </section>
+  </main>
+  <footer class="akp-auth-footer"><span>AKP VISIONE · BUILT WITH VISION</span><span>JEDEN SYSTEM / JEDNA FIRMA</span></footer>
 </div>
 <div id="appView" class="shell" hidden>
- <aside class="sidebar"><div class="side-brand"><div class="mark">A<span>✦</span></div><div><strong>AKP <i>COMMANDER</i></strong><small>CONTROL SYSTEM · v10</small></div></div><div class="side-overline">PRZESTRZEŃ ROBOCZA</div><nav id="sideNav" class="side-nav" aria-label="Menu"></nav><div class="side-footer"><div class="safe-flag"><b>🔒 OCHRONA DANYCH</b><span id="environmentState">AUTORYZACJA + RLS</span></div><button id="logoutSidebar" class="side-logout">↪ Wyloguj</button></div></aside>
- <div class="content-area"><header class="topbar"><div class="top-left"><div class="mobile-brand">A<span>✦</span></div><div><span class="crumb">AKP / <span id="currentSection">Pulpit</span></span><strong id="headerHeadline">Centrum koordynatora</strong></div></div><div class="top-right"><span id="connectPill" class="connect-pill"><span class="dot"></span> ŁĄCZENIE...</span><div class="avatar" id="avatar">AK</div><button id="logoutTop" class="top-logout" title="Wyloguj">↪</button></div></header>
- <div class="page-content"><div class="demo-notice"><span class="spark">✦</span><span><strong>AKP COMMANDER v10</strong> — dostęp jest weryfikowany przez Supabase Auth i polityki RLS. Zlecenia zaimportowano z centralnej bazy Google. Odświeżanie na żądanie: System → Google. Dane istniejące wyłącznie w starej aplikacji nie są jeszcze przeniesione.</span></div><main id="mainContent" aria-live="polite"></main></div><nav id="mobileNav" class="mobile-nav" aria-label="Nawigacja mobilna"></nav>
+ <aside class="sidebar"><div class="side-brand"><div class="mark">A<span>✦</span></div><div><strong>AKP <i>COMMANDER</i></strong><small>PREMIUM OPERATIONS · v12</small></div></div><div class="side-overline">CENTRUM OPERACYJNE</div><nav id="sideNav" class="side-nav" aria-label="Menu"></nav><div class="side-footer"><div class="safe-flag"><b>● SYSTEM CHRONIONY</b><span id="environmentState">AUTORYZACJA + RLS</span></div><button id="logoutSidebar" class="side-logout">↪ Wyloguj</button></div></aside>
+ <div class="content-area"><header class="topbar"><div class="top-left"><div class="mobile-brand">A<span>✦</span></div><div><span class="crumb">AKP OPERATIONS / <span id="currentSection">Pulpit</span></span><strong id="headerHeadline">Centrum koordynatora</strong></div></div><div class="top-right"><span class="top-context" aria-hidden="true">LIVE WORKSPACE</span><button id="themeToggle" type="button" class="btn theme-toggle" data-theme-toggle="1" aria-label="Motyw jasny / ciemny" aria-pressed="false">☾</button><span id="connectPill" class="connect-pill"><span class="dot"></span> ŁĄCZENIE...</span><div class="avatar" id="avatar">AK</div><button id="logoutTop" class="top-logout" title="Wyloguj">↪</button></div></header>
+ <div class="akp-install-strip"><button type="button" class="akp-install-button" data-akp-install>Zainstaluj aplikację na telefonie</button></div><div class="page-content"><details class="system-notice f04a-system-notice"><summary><span class="spark" aria-hidden="true">✦</span><strong>Dane zleceń</strong><span class="f04a-disclosure-hint">Szczegóły ▾</span></summary><div class="f04a-notice-content">Zmiany i import z Google nie są automatycznie potwierdzone — sprawdź wynik zapisu. Połączenie z Google znajdziesz w zakładce System.</div></details><main id="mainContent" aria-live="polite"></main></div><nav id="mobileNav" class="mobile-nav" aria-label="Nawigacja mobilna"></nav>
  </div>
 </div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script src="/world.js" defer></script>
+
+<script src="/pro-model.js" defer></script>
+<script src="/pro-ui.js" defer></script>
+<script src="/materials-ui.js" defer></script>
+<script src="/media-ui.js" defer></script>
+<script src="/drawing-model.js" defer></script>
+<script src="/drawing-ui.js" defer></script>
+<script src="/chat.js" defer></script>
 <script src="/app.js" defer></script>
-</body></html>
+<script src="/field-assistant.js" defer></script>
+<dialog id="akpInstallDialog" class="akp-install-dialog" aria-labelledby="akpInstallTitle"><h2 id="akpInstallTitle">AKP pod ręką</h2><p id="akpInstallHelp"></p><p>Aplikacja wymaga połączenia z internetem.</p><form method="dialog"><button class="akp-install-button">Rozumiem</button></form></dialog><script src="/pwa-install.js" defer></script></body></html>
+
+

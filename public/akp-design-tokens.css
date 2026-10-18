@@ -1,0 +1,47 @@
+/* AKP Design40 + Cinematic integration v03 | RELEASE CANDIDATE | 2026-10-16
+   Presentation layer only. Auth, RLS, API, and data access are unchanged.
+   Scoped to the authenticated application shell; no login or landing changes. */
+#appView {
+  --akp-red-ribbon:#d92534;
+  --akp-surface-bg:#f4f6f9;
+  --akp-surface-card:#ffffff;
+  --akp-surface-inset:#edf1f7;
+  --akp-text-primary:#11141a;
+  --akp-text-secondary:#526078;
+  --akp-border-subtle:#dfe5ee;
+  --akp-red-soft:#fff0f1;
+  --akp-ring:#c2172a;
+  --akp-shadow-card:0 8px 28px rgba(21,37,65,.07);
+  --akp-touch-min:48px;
+  --u-red:var(--akp-red-ribbon);
+  --u-red-soft:var(--akp-red-soft);
+  --u-canvas:var(--akp-surface-bg);
+  --u-surface:var(--akp-surface-card);
+  --u-text:var(--akp-text-primary);
+  --u-muted:var(--akp-text-secondary);
+  --u-line:var(--akp-border-subtle);
+  --u-soft:var(--akp-surface-inset);
+  --u-ring:var(--akp-ring);
+  --u-shadow:var(--akp-shadow-card);
+}
+:root[data-theme="dark"] #appView {
+  --akp-red-ribbon:#ff6070;
+  --akp-surface-bg:#090b0e;
+  --akp-surface-card:#12161d;
+  --akp-surface-inset:#1c232d;
+  --akp-text-primary:#f4f6fb;
+  --akp-text-secondary:#b6c7dd;
+  --akp-border-subtle:#35404e;
+  --akp-red-soft:#3b2633;
+  --akp-ring:#ff929c;
+  --akp-shadow-card:0 10px 30px rgba(0,0,0,.3);
+}
+#appView[data-style="clean"] { --akp-shadow-card:0 2px 6px rgba(0,0,0,.06); }
+#appView[data-style="tactile"] { --akp-shadow-card:0 10px 24px rgba(0,0,0,.13); }
+#appView[data-style="compact"] { --akp-shadow-card:none; --akp-touch-min:48px; }
+#appView :is(button,[role="button"],.nav-item,.mobile-nav button) { min-height:var(--akp-touch-min); }
+#appView :is(button,[role="button"],a):focus-visible { outline:3px solid var(--u-ring); outline-offset:2px; }
+@media(prefers-reduced-motion:reduce) {
+  #appView *,#appView *::before,#appView *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; }
+}
+/* IMPORTANT: no CSS role-based hiding of financial data. API and RLS must enforce authorization. */
