@@ -1,0 +1,6 @@
+.akp-install-button{font:inherit;font-weight:650;cursor:pointer;min-height:44px;padding:10px 16px;border:1px solid #b92a34;border-radius:12px;background:#a91f2b;color:#fff;white-space:normal;max-width:100%}
+.akp-install-button:hover{background:#851925}.akp-install-button:focus-visible{outline:3px solid #ef7982;outline-offset:3px}.akp-install-button[hidden]{display:none!important}.akp-install-button:disabled{opacity:.65;cursor:wait}
+.akp-auth-card>.akp-install-button{width:100%;margin-top:12px}.akp-install-strip{padding:12px 20px 0}.akp-install-strip:has([hidden]){display:none}
+.akp-install-dialog{font-family:system-ui,sans-serif;background:#fff;color:#17191d;border:1px solid #ddd;border-radius:20px;padding:24px;max-width:min(420px,calc(100vw - 40px));box-sizing:border-box;box-shadow:0 24px 80px #0005}
+.akp-install-dialog::backdrop{background:#090b12aa}.akp-install-dialog h2{font-size:23px;margin:0 0 14px}.akp-install-dialog p{font-size:16px;line-height:1.6;margin:12px 0}.akp-install-dialog form{margin-top:18px}
+@media(display-mode:standalone){.akp-install-strip,[data-akp-install]{display:none!important}}

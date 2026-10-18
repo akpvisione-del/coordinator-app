@@ -1,0 +1,8 @@
+{
+  "name": "AKP Commander",
+  "description": "AKP AI Commander — panel koordynatora i pracownika z kontrolą dostępu.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,72 @@
+/* F04A v10: voice-ready field command palette, read-only navigation */
+.akp-field-open{min-width:48px;min-height:48px;font-size:24px;line-height:1;color:var(--akp-ink,#182534)}
+.akp-field-backdrop[hidden]{display:none!important}
+.akp-field-backdrop{position:fixed;inset:0;z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding:max(48px,env(safe-area-inset-top,0px)) 12px 90px;background:rgba(4,12,24,.72);overflow-y:auto}
+.akp-field-panel{width:min(100%,570px);max-height:calc(100dvh - 110px);overflow:auto;border:1px solid var(--akp-stroke,#dce3eb);border-radius:18px;background:var(--akp-surface,#fff);color:var(--akp-ink,#1e293b);padding:18px;box-shadow:0 22px 80px rgba(0,0,0,.25)}
+.akp-field-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.akp-field-head h2{font-size:19px;line-height:1.3;margin:0;color:var(--akp-ink,#1e293b)}
+.akp-field-head button,.akp-field-compose button,.akp-field-actions button{min-height:48px;min-width:48px}
+.akp-field-panel p{font-size:13px;line-height:1.55;color:var(--akp-ink-muted,#53637a)}
+.akp-field-input-label{display:block;font-weight:800;margin:12px 0 8px}
+.akp-field-compose{display:flex;gap:8px}
+.akp-field-compose input{flex:1;min-width:0;min-height:52px;border:1px solid var(--akp-stroke,#dce3eb);background:var(--akp-surface-raised,#f8fafc);border-radius:10px;padding:10px 12px;color:var(--akp-ink,#1e293b);font-size:16px}
+.akp-field-preview{min-height:48px;padding:12px;background:var(--akp-surface-raised,#f8fafc);border:1px dashed var(--akp-stroke,#dce3eb);border-radius:12px;color:var(--akp-ink,#1e293b);font-weight:700;margin-top:12px}
+.akp-field-actions{display:flex;justify-content:flex-end;margin-top:12px}
+.akp-field-actions button{padding:10px 24px}
+.akp-field-panel .akp-field-privacy{border-left:3px solid #b07c39;padding-left:9px;font-size:12px}
+.akp-field-panel .akp-field-examples{font-size:12px;padding-top:10px;border-top:1px solid var(--akp-stroke,#dce3eb)}
+.akp-field-panel .akp-field-footer{font-size:12px}
+.akp-field-backdrop :focus-visible,.akp-field-open:focus-visible{outline:3px solid #d54a77;outline-offset:3px}
+@media(max-width:430px){.akp-field-backdrop{padding:env(safe-area-inset-top,8px) 8px 80px}.akp-field-panel{padding:14px;max-height:calc(100dvh - 96px)}.akp-field-head h2{font-size:17px}.akp-field-open{min-width:48px;min-height:48px}}
+@media(prefers-reduced-motion:reduce){.akp-field-backdrop *{scroll-behavior:auto}}
+/* Two optional density modes. No data or controls are removed. */
+:root[data-akp-density="field"] .job-card,
+:root[data-akp-density="field"] .f04a-plan-job{padding:17px;line-height:1.5}
+:root[data-akp-density="field"] .btn,
+:root[data-akp-density="field"] .chip,
+:root[data-akp-density="field"] .mobile-nav button{min-height:56px;font-size:max(14px,1em)}
+:root[data-akp-density="field"] .job-card h3{font-size:18px}
+:root[data-akp-density="compact"] .job-card{padding:10px 12px}
+:root[data-akp-density="compact"] .f04a-kpi{min-height:66px;padding:8px}
+:root[data-akp-density="compact"] .f04a-plan-job{padding:8px 10px}
+:root[data-akp-density="compact"] .card{padding:12px}
+
+/* V11 — safe plan preview and explicit command examples */
+.akp-field-quick{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:10px 0 2px}
+.akp-field-quick>span{font-size:12px;font-weight:800;flex-basis:100%;color:var(--akp-ink-muted,#53637a)}
+.akp-field-quick .btn{min-height:48px;min-width:48px;border-radius:12px;font-weight:800;font-size:13px;padding:7px 11px}
+.akp-field-preview{white-space:pre-line;overflow-wrap:anywhere;user-select:text}
+.akp-field-actions{gap:8px;flex-wrap:wrap;justify-content:stretch}
+.akp-field-actions .btn{flex:1 1 44%;min-height:50px;font-weight:800}
+.akp-field-actions button[hidden]{display:none!important}
+.akp-field-safe-mode{font-size:12px!important;font-weight:750;color:var(--akp-ink-muted,#53637a)!important}
+.akp-field-backdrop[hidden]{display:none!important}
+@media(max-width:390px){.akp-field-quick .btn{font-size:12px}.akp-field-panel{padding:12px}.akp-field-quick{gap:5px}}
+@media(prefers-reduced-motion:reduce){.akp-field-quick *{transition:none!important;animation:none!important}}
+
+/* V11 visually distinguishes disabled write controls in every theme. */
+.akp-field-actions button:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.55);box-shadow:none}
+.akp-field-quick button:focus-visible,.akp-field-actions button:focus-visible{outline:3px solid #e4557d;outline-offset:3px}
+
+
+/* F04A v11.1 NAVY hotfix: one AI entrypoint, contrast in both themes.
+   Dark/light handled by the shared AKP surface tokens. */
+.akp-field-open{
+  min-width:67px;
+  min-height:48px;
+  padding:9px 12px;
+  border-radius:12px;
+  color:#f8fbff !important;
+  background:linear-gradient(125deg,#124b80,#227aa9) !important;
+  border:1px solid #4b9ac5 !important;
+  font-size:15px;
+  font-weight:850;
+  letter-spacing:.01em;
+  box-shadow:0 2px 8px rgba(4,21,45,.13);
+}
+.akp-field-open:hover{background:linear-gradient(125deg,#185b96,#288bbd) !important}
+.akp-field-open:focus-visible{outline:3px solid #6ac2ff;outline-offset:2px}
+.akp-field-panel{border-color:var(--akp-stroke,#365579)}
+:root[data-theme="dark"] .akp-field-panel{background:#192b45;color:#f0f6ff}
+:root[data-theme="dark"] .akp-field-compose input,
+:root[data-theme="dark"] .akp-field-preview{background:#253d5d;color:#f0f6ff;border-color:#47668c}

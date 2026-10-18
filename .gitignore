@@ -1,0 +1,22 @@
+# Środowisko i sekrety lokalne
+.env
+.env*.local
+.env.production
+.env.staging
+
+# Zależności i artefakty
+node_modules/
+bun.lock*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Local browser QA artifacts (screenshots are archived by CI)
+qa-actual-panels/
+
+# Reproducible visual QA gallery and screenshots
+artifacts/visual-sprint-02/
+
+# Synthetic SUPERSPRINT 03 previews
+artifacts/supersprint-03/

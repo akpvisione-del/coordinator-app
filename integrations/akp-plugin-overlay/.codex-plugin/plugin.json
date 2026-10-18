@@ -1,0 +1,29 @@
+{
+  "apps": "./.app.json",
+  "interface": {
+    "brandColor": "#BC1F2C",
+    "category": "Productivity",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Zlecenia: aktualizuj pojedynczą wskazaną sprawę po moim potwierdzeniu. Weryfikuj klienta, LM/Prywatne, zapis w Google Drive i log zmian.",
+      "Przygotuj duży PDF zlecenia majstra, z kwotą dla wykonawcy (bez przychodu AKP), zakresem, terminem i checklistą. Zapytaj o język PL/RU/UK/EN, przed wysyłką poproś o osobną zgodę.",
+      "Na polski: przetłumacz automatycznie rosyjski/ukraiński i daj wyłącznie przekład. Na ro/uk: tłumacz sensownie i daj sam tekst.",
+      "Kalendarz dwa dni: spotkania, zadania, kolizje, bez tworzenia fikcyjnych wydarzeń."
+    ],
+    "developerName": "AKP VisiOne",
+    "displayName": "AKP Commander",
+    "logo": "./assets/icon.svg",
+    "longDescription": "Prywatny AKP Commander v0.8.1: odczytuje na żywo centralny skoroszyt AKP, korzysta z aktualizowanych zleceń, zadań i pracowników. Rozdziela statusy robót, płatności i ekip. Wspiera wyceny Leroy/prywatne i PDF. Kalendarz i rozrachunki nie są automatycznie zsynchronizowane z akp.wtf. Każdą edycję potwierdza odczytem kontrolnym.",
+    "shortDescription": "Prywatne AKP • aktywne zlecenia • wyceny • zadania",
+    "capabilities": []
+  },
+  "name": "akp-commander",
+  "version": "0.8.2",
+  "description": "AKP Commander v0.8.1 PRIVATE: bieżący rejestr 22 zleceń na Google Drive, 23 zadania, przydziały, kalkulator PRO, karta majstra, tłumacz; obowiązkowy live-read i weryfikacja zapisu.",
+  "author": {
+    "name": "AKP VisiOne",
+    "email": "akpvisione@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

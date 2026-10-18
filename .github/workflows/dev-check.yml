@@ -1,0 +1,115 @@
+name: AKP Commander DEV - safety checks
+
+on:
+  push:
+    branches: [feat/akp-supersprint-03-v01, feat/akp-visual-supersprint-02-v01, feat/akp-supersprint-01-v01, main, fix/sql004-unified-20261011, merge/f01-f02-20261011, merge/f03-ui-20261013, feat/f04a-ux-20261013, feat/akp-premium-cinematic-20261014-v01]
+  pull_request:
+    branches: [feat/akp-supersprint-03-v01, feat/akp-visual-supersprint-02-v01, feat/akp-supersprint-01-v01, main, fix/sql004-unified-20261011, merge/f01-f02-20261011, merge/f03-ui-20261013, feat/f04a-ux-20261013, feat/akp-premium-cinematic-20261014-v01]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dev-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout DEV
+        uses: actions/checkout@v4
+      - name: Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (no scripts)
+        run: npm ci --no-audit --no-fund --ignore-scripts
+      - name: JS syntax check
+        run: npm run check
+      - name: Automated API + SQL static tests
+        run: npm test
+      - name: Browser QA — CSS and JS under strict Netlify CSP
+        run: |
+          node --check scripts/qa-preview-csp.mjs
+          node scripts/qa-preview-csp.mjs
+      - name: Browser QA — ACTUAL Commander coordinator and worker (mock API, strict CSP)
+        run: |
+          node --check scripts/qa-real-panels.mjs
+          node scripts/qa-real-panels.mjs
+      - name: SUPERSPRINT schedule and account UI (synthetic API only)
+        run: node scripts/qa-supersprint.mjs
+      - name: Private messenger Android and desktop (synthetic API)
+        run: node scripts/qa-chat.mjs
+      - name: Premium visual matrix — both themes, roles and viewports
+        run: |
+          node scripts/qa-visual-sprint.mjs
+          node scripts/build-visual-gallery.mjs
+          node scripts/qa-visual-gallery.mjs
+      - name: SUPERSPRINT 03 — quotes, materials, binary media, touch drawings
+        run: |
+          node scripts/qa-pro.mjs
+          node scripts/qa-materials.mjs
+          node scripts/qa-media.mjs
+          node scripts/qa-drawing.mjs
+          node scripts/qa-function-bundle.cjs
+          node scripts/build-sprint03-preview.mjs
+          node scripts/qa-sprint03-preview.mjs
+      - name: Isolated PostgreSQL RLS and non-destructive rollbacks
+        run: bash scripts/test-supersprint-rls.sh
+      - name: Archive SUPERSPRINT 03 synthetic previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: AKP_SUPERSPRINT_03_SYNTHETIC_PREVIEW
+          path: artifacts/supersprint-03/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Archive Premium before-after gallery
+        uses: actions/upload-artifact@v4
+        with:
+          name: AKP_VISUAL_SUPERSPRINT_02_BEFORE_AFTER
+          path: artifacts/visual-sprint-02/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Archive actual-app Chrome screenshots (mock data only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: AKP_Unified_v03_Actual_Views_MOCK_UI_QA
+          path: qa-actual-panels/*.png
+          if-no-files-found: error
+          retention-days: 14
+      - name: Parse PostgreSQL SQL004 using PostgreSQL-native grammar
+        run: |
+          python -m pip install --quiet pglast
+          python - <<'PY'
+          from pathlib import Path
+          from pglast import parse_sql
+          sql = Path('sql/004_minimal_operational_migration.sql').read_text(encoding='utf-8')
+          tree = parse_sql(sql)
+          assert tree and len(tree) > 25, 'SQL migration too short or empty'
+          print(f'PostgreSQL AST PASS: {len(tree)} statements parsed')
+          PY
+
+      - name: Upload AKP Commander F04A DEV source
+        uses: actions/upload-artifact@v4
+        with:
+          name: AKP_COMMANDER_UNIFIED_v03_1_DEV_SOURCE_2026-10-16
+          path: |
+            public/
+            tests/
+            netlify/
+            supabase/
+            sql/
+            integrations/
+            contracts/
+            docs/
+            scripts/
+            README.md
+            package.json
+            package-lock.json
+            netlify.toml
+            server.js
+          if-no-files-found: error
+          retention-days: 14

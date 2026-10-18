@@ -1,0 +1,9 @@
+// Offline screenshot/PDF gallery, not a second application. Only synthetic fixtures.
+import {readdir,readFile,writeFile,copyFile} from 'node:fs/promises';
+const dir='artifacts/supersprint-03';
+for(const suffix of ['STATUS','CHANGELOG','DEPLOY','TEST_REPORT','BACKLOG','PR_BODY'])await copyFile('docs/SUPERSPRINT_03_'+suffix+'.md',dir+'/SUPERSPRINT_03_'+suffix+'.md');
+const files=(await readdir(dir)).filter(f=>/^(quote-|photo-|canvas-).*\.png$/.test(f)).sort();
+if(files.length!==20)throw Error('Expected 20 screenshots (4 quotes + 8 photos + 8 canvases); run QA first.');
+const cards=await Promise.all(files.map(async name=>`<article><h2>${name}</h2><a href="${name}" download>Pobierz PNG</a><img loading="lazy" alt="${name}" src="data:image/png;base64,${(await readFile(dir+'/'+name)).toString('base64')}"></article>`));
+await writeFile(dir+'/PREVIEW.html',`<!doctype html><html lang="pl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AKP SUPERSPRINT 03 — podgląd</title><style>body{margin:0;padding:24px;background:#101925;color:#eef3fa;font:16px system-ui}h1{color:#ff7e8d}a{color:#9cc3ff}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}article{min-width:0;background:#192637;padding:16px;border:1px solid #2c3c50;border-radius:16px}h2{font-size:14px;overflow-wrap:anywhere}img{display:block;width:100%;height:auto;margin-top:12px;border-radius:10px}</style><h1>AKP / SUPERSPRINT 03</h1><p>Istniejąca aplikacja Premium v02. Wyłącznie fikcyjne dane. Podgląd offline z testów Chrome, 390 i 1280 px, oba motywy i role.</p><p><a href="WYCENA_DEMO.pdf">Wycena PDF z osadzoną czcionką</a> · <a href="SUPERSPRINT_03_DEPLOY.md">Uruchomienie i rollback</a> · <a href="SUPERSPRINT_03_TEST_REPORT.md">Raport testów</a></p><main>${cards.join('')}</main></html>`);
+console.log('SPRINT03_PREVIEW_PASS: 20 embedded screenshots, offline gallery, synthetic PDF and PNG/JSON exports');

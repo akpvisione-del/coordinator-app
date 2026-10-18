@@ -1,0 +1,93 @@
+/* AKP Unified Design System v02 | DEV 2026-10-16
+   Presentation only: no Auth/API/role/data logic. */
+:root{--u-red:#d92534;--u-red-deep:#ad1623;--u-red-soft:#fff0f1;--u-canvas:#f3f5f9;--u-surface:#fff;--u-text:#182237;--u-muted:#526078;--u-line:#dfe5ee;--u-soft:#f7f9fd;--u-ring:#c2172a;--u-radius:16px;--u-shadow:0 8px 28px rgba(21,37,65,.07);--u-pad:clamp(12px,2.6vw,26px)}
+:root[data-theme="dark"]{--u-red:#ff6070;--u-red-deep:#a92239;--u-red-soft:#3b2633;--u-canvas:#101824;--u-surface:#1b2739;--u-text:#f1f6fd;--u-muted:#b6c7dd;--u-line:#40516a;--u-soft:#24334a;--u-ring:#ff929c;--u-shadow:0 10px 30px rgba(0,0,0,.19)}
+#appView.shell{background:var(--u-canvas);color:var(--u-text);min-width:0}
+#appView .content-area{min-width:0;background:var(--u-canvas)}
+#appView .page-content{max-width:1240px;margin-inline:auto;padding-inline:var(--u-pad);min-width:0}
+#appView .sidebar,#appView .topbar{background:var(--u-surface);border-color:var(--u-line);color:var(--u-text)}
+#appView :is(.crumb,.side-overline,.side-logout){color:var(--u-muted)}
+#appView :is(.side-brand strong,.top-left strong){color:var(--u-text)}
+#appView .side-brand i{color:var(--u-red)}
+#appView .nav-item{min-height:48px;color:var(--u-muted);border-radius:13px}
+#appView :is(.nav-item.active,.mobile-nav button.active){color:var(--u-red);background:var(--u-red-soft);border-color:var(--u-line)}
+#appView .mobile-nav{background:var(--u-surface);border-color:var(--u-line)}
+#appView .mobile-nav button{color:var(--u-muted);min-height:52px;border-radius:12px}
+#appView .system-notice{background:var(--u-soft);border-color:var(--u-line);color:var(--u-muted)}
+#appView :is(.card,.job-card,.job-detail,.f04a-kpi,.f04a-queue-item,.f04a-plan-job,.job-edit-form,.jobs-filter-panel,.f04a-more-filters,.crew-section,.report-form,.client-info-box,.action-line,.audit-row,.f04a-new-job-details,.f04a-detail-section){
+ background:var(--u-surface);border-color:var(--u-line);color:var(--u-text);border-radius:var(--u-radius);box-shadow:var(--u-shadow);min-width:0}
+#appView :is(.card,.job-card,.f04a-kpi,.f04a-queue-item,.job-detail) :is(p,small,.hint,.location){color:var(--u-muted)}
+#appView :is(.page-hero h1,.card h2,.card h3,.job-card h3,.job-title,.f04a-kpi strong,.job-detail h3,.edit-form-header h3,.action-line strong,.line-main strong){color:var(--u-text)}
+#appView :is(.page-hero p,.f04a-active-explainer,.field label,.job-edit-form label,.filter-label){color:var(--u-muted)}
+#appView .page-hero h1{letter-spacing:-.035em;line-height:1.12}
+#appView .f04a-kpi{padding:14px;min-height:96px}
+#appView .f04a-kpi-icon{color:var(--u-red)}
+#appView .f04a-kpi strong{font-variant-numeric:tabular-nums}
+#appView :is(.f04a-kpi,.f04a-queue-item,.f04a-plan-job):hover{border-color:var(--u-red)}
+#appView .f04a-detail-jump{background:var(--u-canvas);border-radius:11px}
+#appView .f04a-jump{background:var(--u-surface);color:var(--u-text);border-color:var(--u-line)}
+#appView .job-card{display:flex;flex-direction:column;gap:7px;padding:15px;overflow-wrap:anywhere}
+#appView .job-card.card-active{border-color:var(--u-red)}
+#appView .job-card .job-ref,#appView .job-card .ref-badge{color:var(--u-red);white-space:normal;overflow-wrap:anywhere}
+#appView .job-card :is(.job-title,h3){line-height:1.33;margin:4px 0;color:var(--u-text);overflow-wrap:anywhere}
+#appView .job-card .job-card-actions{margin-top:auto;width:100%}
+#appView .job-card .job-toggle-btn{width:100%;min-height:48px}
+#appView .job-card :is(.job-due-chip,.tag){white-space:normal;overflow-wrap:anywhere}
+#appView .worker-action-bar{display:flex;flex-wrap:wrap;gap:8px}
+#appView .worker-action-bar .btn{flex:1 1 110px;min-height:48px}
+#appView .f04a-quick-actions :is(.btn,.f04a-action){min-height:48px}
+#appView .f04a-detail-page>.job-detail{padding:clamp(12px,2vw,22px)}
+#appView .f04a-detail-section{scroll-margin-top:140px}
+#appView .job-edit-form{background:var(--u-soft);border-color:var(--u-line)}
+#appView :is(input,select,textarea):not([type="checkbox"]):not([type="radio"]){background:var(--u-surface);color:var(--u-text);border-color:var(--u-line);min-height:46px;max-width:100%}
+#appView :is(input,textarea)::placeholder{color:var(--u-muted);opacity:.9}
+#appView :is(.form-grid,.report-actions,.filter-chips-row,.item-list,.jobs-grid,.tableish){min-width:0;max-width:100%}
+#appView .report-actions{display:flex;flex-wrap:wrap;gap:8px}
+#appView :is(.btn,.lang-btn,.f04a-jump){min-height:44px}
+#appView .btn.primary{background:var(--u-red-deep);border-color:var(--u-red-deep);color:#fff}
+#appView :is(button,a,input,select,textarea):focus-visible{outline:3px solid var(--u-ring);outline-offset:3px}
+#appView :is(.btn,button,a,input,select,textarea){touch-action:manipulation}
+@media(max-width:850px){
+ #appView .topbar{min-height:65px;padding-inline:12px}
+ #appView .top-left,#appView .top-left>div:last-child{min-width:0}
+ #appView .top-left strong{font-size:13px;overflow-wrap:anywhere}
+ #appView .top-right{gap:7px}
+ #appView .top-right .avatar{display:none}
+ #appView .mobile-nav{padding:7px 4px max(8px,env(safe-area-inset-bottom));gap:3px}
+ #appView .mobile-nav button{min-width:0;flex:1;max-width:100%;padding:5px 2px}
+ #appView .page-content{padding-bottom:calc(108px + env(safe-area-inset-bottom))}
+}
+@media(min-width:350px) and (max-width:660px){
+ #appView .jobs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ #appView .jobs-grid .job-card{padding:12px 10px;gap:6px}
+ #appView .jobs-grid .job-card :is(h3,.job-title){font-size:14px;min-height:2.6em}
+ #appView .jobs-grid .job-card :is(.location,.job-client,.job-due-chip){font-size:11px;line-height:1.35}
+ #appView .jobs-grid .job-card .tag{font-size:10px}
+ #appView .jobs-grid .job-card .job-toggle-btn{font-size:12px;padding-inline:6px}
+ #appView .f04a-dashboard>.f04a-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #appView .f04a-kpi{min-height:94px;padding:12px}
+ #appView .f04a-kpi strong{font-size:25px}
+ #appView .f04a-quick-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ #appView .f04a-quick-actions :is(.btn,.f04a-action){min-width:0;width:100%;font-size:12px;padding-inline:6px}
+ #appView .job-edit-form .form-grid{grid-template-columns:minmax(0,1fr)}
+ #appView .report-actions .btn{flex:1 1 120px}
+ #appView .action-line{flex-wrap:wrap}
+}
+@media(max-width:349px){#appView .jobs-grid{grid-template-columns:minmax(0,1fr)}#appView .f04a-dashboard>.f04a-kpi-grid{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){#appView *,#appView *::before,#appView *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Unified v02.2: CSP-compliant spacing/typography for REAL app-generated views.
+   These replace the formerly blocked inline style attributes. */
+#appView .akp-u-mt8{margin-top:8px}
+#appView .akp-u-mt10{margin-top:10px}
+#appView .akp-u-mt14{margin-top:14px}
+#appView .akp-u-mt16{margin-top:16px}
+#appView .akp-u-mt20{margin-top:20px}
+#appView .akp-u-mb8{margin-bottom:8px}
+#appView .akp-u-mb12{margin-bottom:12px}
+#appView .akp-u-ml8{margin-left:8px}
+#appView .akp-u-report-submit{min-height:48px;font-size:14px;margin-top:10px}
+#appView .akp-u-upload-btn{min-height:46px;margin-top:10px}
+#appView .akp-u-finance-submit{min-height:46px;margin-top:10px}
+#appView .akp-u-notice-small{font-size:11px}
+#appView .akp-u-photo-time{font-size:10px;color:var(--u-muted)}

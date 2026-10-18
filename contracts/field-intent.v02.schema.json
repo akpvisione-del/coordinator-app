@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akp.wtf/contracts/field-intent.v02.schema.json",
+  "title": "AKP Field Intent v02 — proposal only",
+  "description": "Reserved design contract for a future voice/AI adapter. No trusted execution and no backend write. No deployed AI integration.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "intent", "source", "status", "confidence", "confirmation_required", "write_allowed", "request"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "intent": {"enum": ["PROPOSE_APPOINTMENT", "PROPOSE_ASSIGNMENT", "PROPOSE_ESTIMATE", "PROPOSE_MATERIALS", "PROPOSE_JOB", "PROPOSE_PROTOCOL", "PROPOSE_MESSAGE", "UNKNOWN"]},
+    "source": {"enum": ["keyboard", "browser_speech", "ai_proposal"]},
+    "status": {"const": "draft"},
+    "request": {"type": "string", "minLength": 5, "maxLength": 140},
+    "job_id": {"type": "string", "format": "uuid"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "confirmation_required": {"const": true},
+    "write_allowed": {"const": false}
+  }
+}

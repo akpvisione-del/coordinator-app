@@ -1,0 +1,34 @@
+AKP COMMANDER — GEMINI AI STUDIO / MISJA PREMIUM CINEMATIC 25
+Kierunek: AKP Premium Cinematic 3D, strona jak zwizualizowana koncepcja; marka czarny metal AKP + czerwona płynąca wstęga. Działaj na osobnej gałęzi/eksperymencie, NIE na produkcji `akp.wtf`, NIE zmieniaj backendu, API, RLS, SQL, login, danych lub gałęzi PR #3 bez zgody.
+
+PUNKT WYJŚCIA: v11.1 z PR #3 na GitHub, strona `public/landing.html`, `public/akp-cinematic.css`, `public/akp-cinematic.js`, projekt w pakiecie AKP_PREMIUM_CINEMATIC_v01_RELEASE.
+CEL: gotowy, szybki i profesjonalny landing + czytelny przycisk `Zaloguj się` prowadzący do autentycznej aplikacji. Nie zmieniaj działającego loginu.
+
+ZADANIA:
+01. Audyt UX landing 360/390/430/768/1024/1440, z podaniem zrzutów.
+02. Zaproponuj trzy premium warianty kompozycji hero, zachowaj charakter czarno-biało-czerwony.
+03. Dopracuj logo metaliczne w SVG/PNG 2x/4x, zachowaj autorski charakter czerwonej wstęgi.
+04. Przejścia świetlne w hero bez obciążania scrolla.
+05. Subtelna scena WebGL/Three.js tylko jeśli realnie lepsza i wydajna; CSS 3D pozostaje fallbackiem.
+06. Płynna fala czerwonej wstęgi z kontrolą `prefers-reduced-motion`.
+07. Prawdziwe tło 3D budynków/modern architecture bez tekstowych artefaktów z innych mockupów.
+08. Zbuduj realistyczną responsywną makietę laptopa i telefonu z fikcyjnymi, jasno oznaczonymi danymi.
+09. Popraw proporcje i czytelność logo w nav mobile 320–430.
+10. Opracuj typografię Inter Tight / system fallback i tabularne KPI.
+11. Podbij kontrast tekstów, focus, CTA i aria-label w całym hero.
+12. Popraw zasięgi dotyku: każda kontrolka min. 44–48px.
+13. Dostosuj obramowanie/cienie/szkło do premium industrial, bez neonowego kiczu.
+14. Zaproponuj autorską ścieżkę audio: przestrzeń jaskini, niskie basy, trąby filmowe, epika; tylko oryginalny materiał, bez muzyki chronionej, domyślnie wyłączony.
+15. Audio toggle z zapamiętywaniem tylko decyzji użytkownika (nie uruchamiaj automatycznie po ponownej wizycie).
+16. Dopilnuj limitowania audio CPU na Android i automatycznego zatrzymania po ukryciu karty.
+17. Popraw pierwsze 3 sekundy ładowania: LCP/CLS/INP i animacje compositing-only.
+18. Zoptymalizuj grafiki WebP/AVIF i obrazy retina.
+19. Zaprojektuj wersję Dark Graphite przełączaną dla samej strony promocyjnej, ale nie mieszaj z auth.
+20. Dopasuj header sticky i hamburger gdy potrzebny, nie tłocz ikon.
+21. Zaproponuj sekcję procesu zlecenia od przyjęcia po raport i odbiór.
+22. Dopilnuj rozróżnienia funkcji dostępnych już dziś vs zaplanowanych AI; żadnych fałszywych KPI, logo partnerów, opinii ani obietnic.
+23. Sprawdź główny login CTA `/login` i test przekierowania bez ujawniania haseł.
+24. Przygotuj testy w Playwright lub Chromium 360/390/430/768/1440 z wynikami, nie deklaruj przeprowadzenia testów Android jeśli nie były fizyczne.
+25. Eksport gotowego kompletnego ZIP z README, changelog, zrzutami, testami oraz prototypem offline. Podaj istniejący download, nie tylko tekstową ścieżkę.
+
+ODBIÓR: działające wszystkie przyciski; brak JS errors i poziomego scrolla; brak zepsucia aplikacji po loginie; audio wyłączone domyślnie; brak sekretów. Każda decyzja graficzna powinna być jawna. Gemini ma wykonywać projekty wizualne i QA, ChatGPT odpowiada za integrację GitHub + Netlify + Supabase.

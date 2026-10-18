@@ -1,2 +1,1 @@
-# coordinator-app
-coordinator-app
+# akp-commander-ai-studio

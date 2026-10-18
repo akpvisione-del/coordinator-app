@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://akp.wtf/contracts/field-intent.v01.schema.json",
+  "title":"AKP Field Intent v01 — read-only command request",
+  "description":"Future AI adapter request format. A model suggestion is never authorization to mutate user data. Not connected to production.",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","intent","confirmation_required","source","confidence"],
+  "properties":{
+    "schema_version":{"const":"1.0"},
+    "intent":{"enum":["OPEN_OVERVIEW","OPEN_JOBS","OPEN_ACCOUNT","OPEN_TEAM","SHOW_NEW","SHOW_CURRENT","SHOW_ARCHIVE","FILTER_TODAY","FILTER_TOMORROW","FILTER_OVERDUE","FILTER_UNSCHEDULED","FILTER_MEASUREMENTS","FILTER_KITCHENS","FILTER_RENOVATIONS","SEARCH","RESET_FILTERS","SET_DARK","SET_LIGHT","SET_FIELD_DENSITY","SET_COMPACT_DENSITY","SUMMARY","HELP","UNKNOWN"]},
+    "source":{"enum":["keyboard","browser_speech","ai_proposal"]},
+    "query":{"type":"string","maxLength":90},
+    "confidence":{"type":"number","minimum":0,"maximum":1},
+    "confirmation_required":{"const":true},
+    "write_allowed":{"const":false},
+    "job_id":{"type":"string","format":"uuid"}
+  }
+}

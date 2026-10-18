@@ -1,0 +1,31 @@
+/* Isolated additions to AKP Premium v02. */
+#appView .akp-pro {color:var(--v-ink);min-width:0}
+#appView .akp-pro fieldset {border:1px solid var(--v-line);border-radius:12px;padding:12px;min-width:0;margin:12px 0}
+#appView .akp-pro legend {font-weight:700;padding:0 6px}
+#appView .akp-pro label {display:flex;flex-direction:column;gap:6px;min-width:0;margin-bottom:12px;font-size:13px}
+#appView .akp-pro input,#appView .akp-pro select,#appView .akp-pro textarea {width:100%;min-height:46px;background:var(--v-surface);color:var(--v-ink);border:1px solid var(--v-line);border-radius:8px;padding:10px;font:inherit;box-sizing:border-box}
+#appView .pro-grid,#appView .pro-line-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#appView .pro-line {background:var(--v-soft)}
+#appView .pro-actions {display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+#appView .pro-total {font-size:16px;font-weight:700;line-height:1.7}
+#appView .pro-error {color:var(--v-ink);border-left:4px solid var(--v-red);padding:12px;background:var(--v-soft)}
+#appView .akp-pro .btn,#appView .akp-pro summary {min-height:46px;white-space:normal;margin:4px 0}
+#appView .akp-pro details .btn {display:block}
+#appView .akp-pro :focus-visible {outline:3px solid var(--v-blue);outline-offset:3px}
+@media(min-width:900px){#appView .pro-line-grid {grid-template-columns:repeat(5,minmax(0,1fr))}}
+#appView .pro-photo-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+#appView .pro-photo-grid article {min-width:0;padding:10px;border:1px solid var(--v-line);border-radius:12px}
+#appView .pro-photo-preview {display:flex;flex-direction:column;gap:8px;width:100%;min-height:46px;text-align:left;background:var(--v-soft);color:var(--v-ink);border:0;border-radius:8px;padding:8px;font:inherit;cursor:pointer}
+#appView .pro-photo-preview img {width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px}
+#appView .pro-photo-preview span,#appView .pro-photo-grid small {font-size:12px;color:var(--v-muted)}
+#appView .pro-photo-detail {padding:16px;border:1px solid var(--v-line);border-radius:12px}
+#appView .pro-photo-detail>img {display:block;max-width:100%;max-height:65vh;object-fit:contain;margin:auto}
+@media(min-width:1000px){#appView .pro-photo-grid {grid-template-columns:repeat(3,minmax(0,1fr))}}
+#appView .akp-drawing {border:2px solid var(--v-blue);border-radius:14px;background:var(--v-soft);padding:14px;margin:18px 0;min-width:0}
+#appView .pro-drawing-canvas {display:block;width:100%;height:auto;touch-action:none;border:1px solid var(--v-line);border-radius:8px;cursor:crosshair}
+#appView .akp-drawing li {margin:8px 0;overflow-wrap:anywhere}
+
+#appView .pro-canvas-viewport {width:100%;max-height:75vh;overflow:auto;overscroll-behavior:contain}
+#appView .pro-drawing-zoom2 .pro-drawing-canvas {width:200%;max-width:none}
+#appView .pro-drawing-zoom3 .pro-drawing-canvas {width:300%;max-width:none}
+#appView .pro-drawing-canvas.pro-canvas-pan {touch-action:pan-x pan-y;cursor:grab}
